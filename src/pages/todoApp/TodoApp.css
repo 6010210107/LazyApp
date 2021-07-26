@@ -1,0 +1,20 @@
+.pt-10 {
+  padding-top: 10rem;
+}
+.pt-5 {
+  padding-top: 5rem;
+}
+.pt-3 {
+  padding-top: 3rem;
+}
+
+.todo-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px;
+}
+
+.todo-form {
+  margin-bottom: 30px;
+}

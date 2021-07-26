@@ -1,0 +1,35 @@
+.item-container {
+  margin-bottom: 20px;
+  border-radius: 7px;
+  max-width: 70vw !important;
+}
+
+.item-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item-btn {
+  margin: 5px 0;
+  padding: 5px;
+  font-weight: 600 !important;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-content {
+  padding: 10px;
+}
+
+.item-form {
+  width: 100% !important;
+  padding:7px !important;
+}
+
+.item-content-paragraph {
+  text-align: center
+}

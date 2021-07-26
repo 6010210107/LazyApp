@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+.font-weight-700 {
+  font-weight: 700 !important;
+}
+
+
+
+.outline-logo {
+  /* color: black; */
+  -webkit-text-fill-color: #ffd900; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ffffff;
+}
+
+.logo-font {
+    font-family: 'Indie Flower', cursive;
+    word-spacing: 5px;
+}
+
+.font-lg {
+    font-size: 1.5rem !important;
+}
