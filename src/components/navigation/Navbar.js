@@ -3,7 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 
 import "./Navbar.css";
 
-const Navigation = () => {
+const NavigationBar = () => {
   return (
     <Navbar animation="false" expand="lg" className="min-vw-100 shadow-sm">
       <Container>
@@ -39,4 +39,4 @@ const Navigation = () => {
   );
 };
 
-export default withRouter(Navigation);
+export default withRouter(NavigationBar);

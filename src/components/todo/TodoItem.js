@@ -62,7 +62,7 @@ const TodoItem = ({ index, content, highlight, action }) => {
             <Col xs={6} sm={4} lg={1} className="item-btn-container">
               <Button
                 variant="info"
-                className="item-btn"
+                className={`item-btn ${isHighlight ? "" : "white-btn"}`}
                 onClick={() => {
                   setIsHighlight(!isHighlight);
                   dispatch(highlightTodo(index))
