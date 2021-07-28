@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { TodoApp, Sudoku, Home } from "../../pages/";
+
 const Navigation = () => {
   return (
     <Switch>

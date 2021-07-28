@@ -5,6 +5,7 @@
 }
 
 .item-btn-container {
+  box-sizing: border-box !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,6 +14,8 @@
   margin: 5px 0;
   padding: 5px;
   font-weight: 600 !important;
+  color:aliceblue !important;
+
 }
 
 .d-flex-center {
@@ -30,6 +33,15 @@
   padding:7px !important;
 }
 
+
+
 .item-content-paragraph {
   text-align: center
+}
+.highlight {
+ 
+  /* border: 5px solid #F4D160; */
+  background: #FBEEAC !important;
+  box-shadow:0px 0px 10px 2px #F4D160 inset;
+  margin-bottom:20px;
 }
