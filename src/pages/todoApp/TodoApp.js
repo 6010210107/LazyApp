@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container} from "react-bootstrap";
 import { TodoItem, TodoForm } from "../../components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./TodoApp.css";
 
 const TodoApp = () => {

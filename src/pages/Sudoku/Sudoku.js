@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import { SudokuTable } from "../../components";
 
+import './Sudoku.css'
 const Sudoku = () => {
-    return (
-        <div className="d-flex justify-content-center align-items-center min-vh-100"> 
-            <h1>This is sudoku solver.</h1>
-        </div>
-    )
-}
+  return (
+    <div className="content-container">
+      <div className="content-header">
+        <h1>Sudoku.</h1>
+      </div>
+      <div className="content-puzzle">
+        <SudokuTable />
+      </div>
+    </div>
+  );
+};
 
-export default Sudoku
+export default Sudoku;

@@ -1,0 +1,13 @@
+
+.outline-logo {
+    /* color: black; */
+    -webkit-text-fill-color: #ffd900; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ffffff;
+  }
+  
+  
+  .logo-font {
+      font-family: 'Indie Flower', cursive;
+      word-spacing: 5px;
+  }

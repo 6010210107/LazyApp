@@ -37,7 +37,7 @@ const TodoForm = () => {
             />
           </Form.Group>
         </Col>
-        <Col xs={1} className="d-flex align-items-center">
+        <Col xs={2} className="d-flex align-items-center">
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check
             className="font-weight-bold"
