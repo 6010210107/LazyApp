@@ -6,7 +6,7 @@ const Sudoku = () => {
   return (
     <div className="content-container">
       <div className="content-header">
-        <h1>Sudoku.</h1>
+        <h1>Sudoku</h1>
       </div>
       <div className="content-puzzle">
         <SudokuTable />

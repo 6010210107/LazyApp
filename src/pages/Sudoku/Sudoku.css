@@ -8,12 +8,13 @@
 
 .content-header {
     height: 10vh;
-    margin: 5rem auto;
+    margin: 2rem auto;
 }
 
 .content-puzzle {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin:3rem 0;
+    width:100vw;
+    margin:2rem -2rem;
 }

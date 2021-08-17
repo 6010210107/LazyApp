@@ -11,3 +11,13 @@
       font-family: 'Indie Flower', cursive;
       word-spacing: 5px;
   }
+
+  .logo-container {
+      padding:0;
+      margin-bottom:-3rem;
+      width: 15rem;
+      height:3rem;
+      /* display:flex;
+      justify-content: center;
+      align-items: center; */
+  }

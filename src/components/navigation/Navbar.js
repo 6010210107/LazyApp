@@ -5,7 +5,7 @@ import "./Navbar.css";
 
 const NavigationBar = () => {
   return (
-    <Navbar animation="false" expand="lg" className="min-vw-100 shadow-sm bg-gray-100 top-display">
+    <Navbar animation="false" expand="lg" className="max-vw-100 shadow-sm bg-gray-100 top-display">
       <Container>
         <Nav.Link as={NavLink} to="/">
           <Navbar.Brand className="font-weight-700 logo-font  font-lg">

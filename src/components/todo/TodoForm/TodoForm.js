@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {  Col, Row, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "../../controller/redux/action";
-
+import { addTodo } from "../../../controller/redux/action";
+import './TodoForm.css'
 const TodoForm = () => {
   let todos = useSelector((state) => state);
   const [content, setContent] = useState("");
@@ -27,7 +27,7 @@ const TodoForm = () => {
   return (
     <Form onSubmit={submitForm} className="todo-form">
       <Row>
-        <Col xs={{ span: 6, offset: 2 }}>
+        <Col xs={{ span: 12, offset: 0 }} sm={{ span: 6, offset: 2 }} md={{ span: 6, offset: 2 }}>
           <Form.Group className="mb-3">
             <Form.Control
               type="text"
@@ -37,10 +37,10 @@ const TodoForm = () => {
             />
           </Form.Group>
         </Col>
-        <Col xs={2} className="d-flex align-items-center">
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Col xs={6} sm={2} className="d-flex align-items-center justify-content-center">
+          <Form.Group className="mb-3 " controlId="formBasicCheckbox">
             <Form.Check
-            className="font-weight-bold"
+            className="font-weight-bold "
               type="checkbox"
               checked={isChecked}
               onChange={(e) => setIsChecked(e.target.checked)}
@@ -48,8 +48,8 @@ const TodoForm = () => {
             />
           </Form.Group>
         </Col>
-        <Col xs={1}>
-          <Button variant="primary" type="submit">
+        <Col xs={6} sm={2} md={1} className="d-flex justify-content-center">
+          <Button variant="primary" type="submit" className="submit-btn">
             Add
           </Button>
         </Col>
