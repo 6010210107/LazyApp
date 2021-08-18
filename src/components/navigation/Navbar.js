@@ -7,8 +7,8 @@ const NavigationBar = () => {
   return (
     <Navbar animation="false" expand="lg" className="max-vw-100 shadow-sm bg-gray-100 top-display">
       <Container>
-        <Nav.Link as={NavLink} to="/">
-          <Navbar.Brand className="font-weight-700 logo-font  font-lg">
+        <Nav.Link as={NavLink} to="/" className="m-0 p-0">
+          <Navbar.Brand className="font-weight-700 logo-font font-lg">
             <Logo />
           </Navbar.Brand>
         </Nav.Link>

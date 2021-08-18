@@ -1,7 +1,47 @@
 /* Sudoku Table */
+.sudoku-table {
+  table-layout: fixed;
+  width: 80%;
+  max-width: 40vw;
+}
+
+.config-block{
+  /* position: relative; */
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width:100%;
+  margin: 1rem;
+  
+}
+
+.card-config {
+  margin-top:2rem;
+  padding:2rem 0.9rem;
+  width:100%;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+.card-config-body {
+  margin-top:2rem;
+  padding: 0rem !important; 
+}
+
+.card-config-btn{
+  /* position: absolute;
+  left: 0rem;
+  top:0rem;
+  margin:1rem; */
+  position: relative;
+  margin:-3rem 0 1rem -0.3rem;
+}
 
 table td {
   border: 0.5px solid rgb(207, 207, 207);
+}
+.bold {
+  font-weight: 600;
 }
 
 table {
@@ -34,7 +74,7 @@ td {
 /* Sudoku Table */
 
 .not-safe {
-  background:#FF4848 !important
+  background: #ff4848 !important;
 }
 
 /* Cell number */
@@ -45,7 +85,7 @@ td {
   font-weight: bold;
 }
 
-.pink{
+.pink {
   background: rgb(255, 179, 179);
 }
 
@@ -60,8 +100,7 @@ td {
   .sudoku-input {
     width: 2rem;
     height: 2rem;
-  font-size: 1rem !important;
-
+    font-size: 1rem !important;
   }
 }
 

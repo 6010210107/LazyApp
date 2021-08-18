@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./SudokuTable.css";
-import { Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Dropdown,
+  DropdownButton,
+  Container,
+  Card,
+} from "react-bootstrap";
 import { newStartingBoard, fillPuzzle } from "../../controller/sudoku/puzzle";
-
+// import { CustomCard } from "..";
 /**
  * ---------------------------------------------------------
  *todo || Sudoku board.
@@ -31,11 +38,11 @@ const emptyPuzzle = [
  * Main Component
  */
 const SudokuTable = () => {
-  const [difficulty, setDifficulty] = useState("Select Difficulty");
+  const [curDifficulty, setDifficulty] = useState("Unset");
   let currentRef = useRef();
   let puzzleRef = useRef();
-  let difficultyList = ["Easy", "Medium", "Hard", "Expert"];
-  let holes = [20, 30, 40, 50];
+  let difficultyList = { Easy: 20, Medium: 30, Hard: 40, Expert: 50 };
+
   /**
    ** Check input is safe.
    */
@@ -106,22 +113,30 @@ const SudokuTable = () => {
   }, [initPuzzle]);
 
   /**
-   * JSX return
+   * !JSX return
    */
   return (
-    <div>
-      <Row className="d-flex justify-content-around m-3 w-100">
-        <Col xs={12} md={4} className="d-flex flex-wrap pink mx-5">
-          <SudokuDropdown
-            setDifficulty={setDifficulty}
-            initPuzzle={initPuzzle}
-            difficulty={difficultyList}
-            holes={holes}
-            title={difficulty}
-          />
+    <div className="">
+      <Row className="d-flex justify-content-around m-3 ">
+        <Col xs={12} lg={3} className="mx-5">
+          <Container className="d-flex justify-content-center">
+            <CustomCard
+              holes={difficultyList[curDifficulty]}
+              difficulty={curDifficulty}
+              button={
+                <SudokuDropdown
+                  setDifficulty={setDifficulty}
+                  initPuzzle={initPuzzle}
+                  difficulty={Object.keys(difficultyList)}
+                  holes={Object.values(difficultyList)}
+                  title={curDifficulty}
+                />
+              }
+            />
+          </Container>
         </Col>
-        <Col xs={12} md={6} className="d-flex  px-5 justify-content-center ">
-          <table>
+        <Col xs={12} lg={7} className="d-flex m-2 justify-content-center ">
+          <table className="sudoku-table">
             <tbody>{sudokuBoard}</tbody>
           </table>
         </Col>
@@ -222,7 +237,7 @@ const SudokuDropdown = ({
   title,
 }) => {
   return (
-    <DropdownButton title={title}>
+    <DropdownButton title={"Select Difficulty"}>
       <Dropdown.ItemText>Select Difficulty</Dropdown.ItemText>
       {/* <Dropdown.Item as="button" onClick={() => beginPuzzle(81)}>
               Empty Puzzle
@@ -253,5 +268,19 @@ const DropdownItem = ({ setDifficulty, initPuzzle, difficulty, holes }) => {
     >
       {difficulty}
     </Dropdown.Item>
+  );
+};
+
+const CustomCard = ({ holes, difficulty, button }) => {
+  return (
+    <>
+      <Card className="card-config">
+        <Card.Body className="card-config-body">
+          <div className="card-config-btn">{button}</div>
+          <Card.Text> <span className="bold">Difficulty :</span>  {difficulty}</Card.Text>
+          <Card.Text><span className="bold">Holes :</span>  {holes}</Card.Text>
+        </Card.Body>
+      </Card>
+    </>
   );
 };
