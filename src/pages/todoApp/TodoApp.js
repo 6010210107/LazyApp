@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container} from "react-bootstrap";
-import { TodoItem, TodoForm } from "../../components";
+import { Container } from "react-bootstrap";
+import { TodoItem, TodoForm, Header } from "../../components";
 import { useSelector } from "react-redux";
 import "./TodoApp.css";
 
@@ -18,7 +18,6 @@ const TodoApp = () => {
   );
 
   useEffect(() => {
-
     setContentList(() =>
       todos.map((todo) => (
         <TodoItem
@@ -32,15 +31,16 @@ const TodoApp = () => {
   }, [todos]);
 
   return (
-    <Container className="min-vh-100 bg-gray-100 shadow-sm px-5 pt-5 mt-1">
-      <Container className="todo-header">
-        <h2>Todo App</h2>
-      </Container>
-      <TodoForm/>
+    <div className="content-container">
+      <Header contentHeader={"Todo App"} />
 
-      {/* List of items */}
-      {contentList}
-    </Container>
+      <Container className="p-5">
+        <TodoForm />
+
+        {/* List of items */}
+        {contentList}
+      </Container>
+    </div>
   );
 };
 

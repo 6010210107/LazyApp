@@ -1,15 +1,13 @@
-.content-container {
+/* .content-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: start; */
-
-}
-
+} */
+/* 
 .content-header {
     height: 10vh;
     margin: 2rem auto;
-}
+} */
 
 .content-puzzle {
     display: flex;

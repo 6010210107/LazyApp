@@ -148,7 +148,6 @@ export const pokeHoles = (startingBoard, holes) => {
   return [removedVals, startingBoard];
 };
 
-
 /*--------------------------------------------------------------------------------------------
 --------------------------------- Initialize -------------------------------------
 --------------------------------------------------------------------------------------------*/
@@ -183,62 +182,141 @@ export function newStartingBoard(holes) {
 // and measuring its length. If multiple possible solutions are found at any point
 // If will return true, prompting the pokeHoles function to select a new value for removal.
 
-function multiplePossibleSolutions (boardToCheck) {
-    const possibleSolutions = []
-    const emptyCellArray = emptyCellCoords(boardToCheck)
-    for (let index = 0; index < emptyCellArray.length; index++) {
-      // Rotate a clone of the emptyCellArray by one for each iteration
-      let emptyCellClone = [...emptyCellArray]
-      const startingPoint = emptyCellClone.splice(index, 1);
-      emptyCellClone.unshift( startingPoint[0] ) 
-      let thisSolution = fillFromArray( boardToCheck.map( row => row.slice() ) , emptyCellClone)
-      possibleSolutions.push( thisSolution.join() )
-      if (Array.from(new Set(possibleSolutions)).length > 1 ) return true
-    }
-    return false
+function multiplePossibleSolutions(boardToCheck) {
+  const possibleSolutions = [];
+  const emptyCellArray = emptyCellCoords(boardToCheck);
+  for (let index = 0; index < emptyCellArray.length; index++) {
+    // Rotate a clone of the emptyCellArray by one for each iteration
+    let emptyCellClone = [...emptyCellArray];
+    const startingPoint = emptyCellClone.splice(index, 1);
+    emptyCellClone.unshift(startingPoint[0]);
+    let thisSolution = fillFromArray(
+      boardToCheck.map((row) => row.slice()),
+      emptyCellClone
+    );
+    possibleSolutions.push(thisSolution.join());
+    if (Array.from(new Set(possibleSolutions)).length > 1) return true;
   }
-  
-  // This will attempt to solve the puzzle by placing values into the board in the order that
-  // the empty cells list presents
-  function fillFromArray(startingBoard, emptyCellArray) {
-    const emptyCell = nextStillEmptyCell(startingBoard, emptyCellArray)
-    var pokeCounter = 0
-    if (!emptyCell) return startingBoard
-    for (let num of shuffle(numArray) ) {   
+  return false;
+}
 
-      pokeCounter++
-      if ( pokeCounter > 60_000_000 ) throw new Error ("Poke Timeout")
-      if ( safeToPlace( startingBoard, emptyCell, num) ) {
-        startingBoard[ emptyCell.rowIndex ][ emptyCell.colIndex ] = num 
-        if ( fillFromArray(startingBoard, emptyCellArray) ) return startingBoard 
-        startingBoard[ emptyCell.rowIndex ][ emptyCell.colIndex ] = 0 
+// This will attempt to solve the puzzle by placing values into the board in the order that
+// the empty cells list presents
+function fillFromArray(startingBoard, emptyCellArray) {
+  const emptyCell = nextStillEmptyCell(startingBoard, emptyCellArray);
+  var pokeCounter = 0;
+  if (!emptyCell) return startingBoard;
+  for (let num of shuffle(numArray)) {
+    pokeCounter++;
+    if (pokeCounter > 60_000_000) throw new Error("Poke Timeout");
+    if (safeToPlace(startingBoard, emptyCell, num)) {
+      startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = num;
+      if (fillFromArray(startingBoard, emptyCellArray)) return startingBoard;
+      startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = 0;
+    }
+  }
+  return false;
+}
+
+// As numbers get placed, not all of the initial cells are still empty.
+// This will find the next still empty cell in the list
+function nextStillEmptyCell(startingBoard, emptyCellArray) {
+  for (var coords of emptyCellArray) {
+    if (startingBoard[coords.row][coords.col] === 0)
+      return { rowIndex: coords.row, colIndex: coords.col };
+  }
+  return false;
+}
+
+// Generate array from range, inclusive of start & endbounds.
+const range = (start, end) => {
+  const length = end - start + 1;
+  return Array.from({ length }, (_, i) => start + i);
+};
+
+// Get a list of all empty cells in the board from top-left to bottom-right
+function emptyCellCoords(startingBoard) {
+  const listOfEmptyCells = [];
+  for (const row of range(0, 8)) {
+    for (const col of range(0, 8)) {
+      if (startingBoard[row][col] === 0) listOfEmptyCells.push({ row, col });
+    }
+  }
+  return listOfEmptyCells;
+}
+
+export const validBoard = (board) => {
+  // THIS FUNCTION WORKS.
+  // Board -> Boolean
+  // checks to see if given board is valid
+  return rowsGood(board) && columnsGood(board) && boxesGood(board);
+};
+
+const rowsGood = (board) => {
+  // THIS FUNCTION WORKS.
+  // Board -> Boolean
+  // makes sure there are no repeating numbers for each row
+  for (var i = 0; i < 9; i++) {
+    var cur = [];
+    for (var j = 0; j < 9; j++) {
+      if (cur.includes(board[i][j])) {
+        return false;
+      } else if (board[i][j] !== 0) {
+        cur.push(board[i][j]);
       }
     }
-    return false
   }
-  
-  // As numbers get placed, not all of the initial cells are still empty.
-  // This will find the next still empty cell in the list
-  function nextStillEmptyCell (startingBoard, emptyCellArray) {
-    for (var coords of emptyCellArray) {
-      if (startingBoard[ coords.row ][ coords.col ] === 0) return {rowIndex: coords.row, colIndex: coords.col}
-    }
-    return false
-  }
-  
-  // Generate array from range, inclusive of start & endbounds.
-  const range = (start, end) => {
-    const length = end - start + 1
-    return Array.from( {length} , ( _ , i) => start + i)
-  }
-  
-  // Get a list of all empty cells in the board from top-left to bottom-right
-  function emptyCellCoords (startingBoard) {
-    const listOfEmptyCells = []
-    for (const row of range(0,8)) {
-      for (const col of range(0,8) ) {
-        if (startingBoard[row][col] === 0 ) listOfEmptyCells.push( {row, col } )
+  return true;
+};
+
+const columnsGood = (board) => {
+  // THIS FUNCTION WORKS.
+  // Board -> Boolean
+  // makes sure there are no repeating numbers for each column
+  for (var i = 0; i < 9; i++) {
+    var cur = [];
+    for (var j = 0; j < 9; j++) {
+      if (cur.includes(board[j][i])) {
+        return false;
+      } else if (board[j][i] !== 0) {
+        cur.push(board[j][i]);
       }
     }
-    return listOfEmptyCells
   }
+  return true;
+};
+
+const boxesGood = (board) => {
+  // transform this everywhere to update res
+  const boxCoordinates = [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [1, 0],
+    [1, 1],
+    [1, 2],
+    [2, 0],
+    [2, 1],
+    [2, 2],
+  ];
+  // THIS FUNCTION WORKS.
+  // Board -> Boolean
+  // makes sure there are no repeating numbers for each box
+  for (var y = 0; y < 9; y += 3) {
+    for (var x = 0; x < 9; x += 3) {
+      // each traversal should examine each box
+      var cur = [];
+      for (var i = 0; i < 9; i++) {
+        var coordinates = [...boxCoordinates[i]];
+        coordinates[0] += y;
+        coordinates[1] += x;
+        if (cur.includes(board[coordinates[0]][coordinates[1]])) {
+          return false;
+        } else if (board[coordinates[0]][coordinates[1]] !== 0) {
+          cur.push(board[coordinates[0]][coordinates[1]]);
+        }
+      }
+    }
+  }
+  return true;
+};
