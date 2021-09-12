@@ -1,0 +1,23 @@
+.card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  /* object-position: center;  */
+  /* overflow: hidden; */
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ccc;
+}
+.border-top {
+  border-bottom: 1px solid #ccc;
+}
+
+.card-conatiner {
+  min-width: 30ch;
+  max-width: 32ch;
+}
+
+.card-gap {
+  margin: 2rem 0;
+}

@@ -182,68 +182,68 @@ export function newStartingBoard(holes) {
 // and measuring its length. If multiple possible solutions are found at any point
 // If will return true, prompting the pokeHoles function to select a new value for removal.
 
-function multiplePossibleSolutions(boardToCheck) {
-  const possibleSolutions = [];
-  const emptyCellArray = emptyCellCoords(boardToCheck);
-  for (let index = 0; index < emptyCellArray.length; index++) {
-    // Rotate a clone of the emptyCellArray by one for each iteration
-    let emptyCellClone = [...emptyCellArray];
-    const startingPoint = emptyCellClone.splice(index, 1);
-    emptyCellClone.unshift(startingPoint[0]);
-    let thisSolution = fillFromArray(
-      boardToCheck.map((row) => row.slice()),
-      emptyCellClone
-    );
-    possibleSolutions.push(thisSolution.join());
-    if (Array.from(new Set(possibleSolutions)).length > 1) return true;
-  }
-  return false;
-}
+// function multiplePossibleSolutions(boardToCheck) {
+//   const possibleSolutions = [];
+//   const emptyCellArray = emptyCellCoords(boardToCheck);
+//   for (let index = 0; index < emptyCellArray.length; index++) {
+//     // Rotate a clone of the emptyCellArray by one for each iteration
+//     let emptyCellClone = [...emptyCellArray];
+//     const startingPoint = emptyCellClone.splice(index, 1);
+//     emptyCellClone.unshift(startingPoint[0]);
+//     let thisSolution = fillFromArray(
+//       boardToCheck.map((row) => row.slice()),
+//       emptyCellClone
+//     );
+//     possibleSolutions.push(thisSolution.join());
+//     if (Array.from(new Set(possibleSolutions)).length > 1) return true;
+//   }
+//   return false;
+// }
 
 // This will attempt to solve the puzzle by placing values into the board in the order that
 // the empty cells list presents
-function fillFromArray(startingBoard, emptyCellArray) {
-  const emptyCell = nextStillEmptyCell(startingBoard, emptyCellArray);
-  var pokeCounter = 0;
-  if (!emptyCell) return startingBoard;
-  for (let num of shuffle(numArray)) {
-    pokeCounter++;
-    if (pokeCounter > 60_000_000) throw new Error("Poke Timeout");
-    if (safeToPlace(startingBoard, emptyCell, num)) {
-      startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = num;
-      if (fillFromArray(startingBoard, emptyCellArray)) return startingBoard;
-      startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = 0;
-    }
-  }
-  return false;
-}
+// function fillFromArray(startingBoard, emptyCellArray) {
+//   const emptyCell = nextStillEmptyCell(startingBoard, emptyCellArray);
+//   var pokeCounter = 0;
+//   if (!emptyCell) return startingBoard;
+//   for (let num of shuffle(numArray)) {
+//     pokeCounter++;
+//     if (pokeCounter > 60_000_000) throw new Error("Poke Timeout");
+//     if (safeToPlace(startingBoard, emptyCell, num)) {
+//       startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = num;
+//       if (fillFromArray(startingBoard, emptyCellArray)) return startingBoard;
+//       startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = 0;
+//     }
+//   }
+//   return false;
+// }
 
 // As numbers get placed, not all of the initial cells are still empty.
 // This will find the next still empty cell in the list
-function nextStillEmptyCell(startingBoard, emptyCellArray) {
-  for (var coords of emptyCellArray) {
-    if (startingBoard[coords.row][coords.col] === 0)
-      return { rowIndex: coords.row, colIndex: coords.col };
-  }
-  return false;
-}
+// function nextStillEmptyCell(startingBoard, emptyCellArray) {
+//   for (var coords of emptyCellArray) {
+//     if (startingBoard[coords.row][coords.col] === 0)
+//       return { rowIndex: coords.row, colIndex: coords.col };
+//   }
+//   return false;
+// }
 
-// Generate array from range, inclusive of start & endbounds.
-const range = (start, end) => {
-  const length = end - start + 1;
-  return Array.from({ length }, (_, i) => start + i);
-};
+// // Generate array from range, inclusive of start & endbounds.
+// const range = (start, end) => {
+//   const length = end - start + 1;
+//   return Array.from({ length }, (_, i) => start + i);
+// };
 
-// Get a list of all empty cells in the board from top-left to bottom-right
-function emptyCellCoords(startingBoard) {
-  const listOfEmptyCells = [];
-  for (const row of range(0, 8)) {
-    for (const col of range(0, 8)) {
-      if (startingBoard[row][col] === 0) listOfEmptyCells.push({ row, col });
-    }
-  }
-  return listOfEmptyCells;
-}
+// // Get a list of all empty cells in the board from top-left to bottom-right
+// function emptyCellCoords(startingBoard) {
+//   const listOfEmptyCells = [];
+//   for (const row of range(0, 8)) {
+//     for (const col of range(0, 8)) {
+//       if (startingBoard[row][col] === 0) listOfEmptyCells.push({ row, col });
+//     }
+//   }
+//   return listOfEmptyCells;
+// }
 
 export const validBoard = (board) => {
   // THIS FUNCTION WORKS.
@@ -252,7 +252,7 @@ export const validBoard = (board) => {
   return rowsGood(board) && columnsGood(board) && boxesGood(board);
 };
 
-const rowsGood = (board) => {
+const rowsGood = (board) => { 
   // THIS FUNCTION WORKS.
   // Board -> Boolean
   // makes sure there are no repeating numbers for each row
